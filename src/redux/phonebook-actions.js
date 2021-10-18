@@ -1,38 +1,27 @@
-import { createAction, createAsyncThunk } from '@reduxjs/toolkit';
-import { getAllContacts, addNewContact, deleteContact } from 'service/api';
+import { createAction } from '@reduxjs/toolkit';
 
-// export const addContact = createAction(
-//     'phonebook/AddContact',
-//     (name, number) => ({
-//         payload: {
-//             id: shortid.generate(),
-//             name,
-//             number,
-//         },
-//     }),
-// );
+export const getContactsRequest = createAction('phonebook/getContactsRequest');
+export const getContactsSuccess = createAction('phonebook/getContactsSuccess');
+export const getContactsError = createAction('todos/getContactsError');
 
-// export const deleteContact = createAction('phonebook/DeleteContact');
+export const addContactRequest = createAction('phonebook/addContactRequest');
+export const addContactSuccess = createAction('phonebook/addContactSuccess');
+export const addContactError = createAction('phonebook/addContactError');
 
-export const findContact = createAction('phonebook/FindContact');
-
-export const getContacts = createAsyncThunk(
-    'phonebook/getContacts',
-    async () => {
-        const contact = await getAllContacts();
-        return contact;
-    },
+export const deleteContactRequest = createAction(
+    'phonebook/deleteContactRequest',
 );
-
-export const addContact = createAsyncThunk(
-    'phonebook/addContact',
-    async contact => await addNewContact(contact),
+export const deleteContactSuccess = createAction(
+    'phonebook/deleteContactSuccess',
 );
+export const deleteContactError = createAction('phonebook/deleteContactError');
 
-export const deleteContactById = createAsyncThunk(
-    'phonebook/DeleteContact',
-    async id => {
-        const res = await deleteContact(id);
-        return res;
-    },
+export const updateContactRequest = createAction(
+    'phonebook/updateContactRequest',
 );
+export const updateContactSuccess = createAction(
+    'phonebook/updateContactSuccess',
+);
+export const updateContactError = createAction('phonebook/updateContactError');
+
+export const findContact = createAction('phonebook/filter');
