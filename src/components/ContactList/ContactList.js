@@ -1,10 +1,13 @@
 import PropTypes from 'prop-types';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useEffect } from 'react';
 import ContactItem from 'components/ContactItem/ContactItem';
 import style from './ContactList.module.css';
-import { getContacts } from 'redux/selectors';
-
+import { getAllContacts, isLoggedInGet } from 'redux/selectors';
+import { getContacts } from 'redux/phonebook-operation';
 const ContactList = () => {
+    const dispatch = useDispatch();
+
     const getUserContacts = (items, filter) => {
         const normalizedFilter = filter.toLowerCase();
 
@@ -18,20 +21,32 @@ const ContactList = () => {
         return findContacts;
     };
 
-    const { items, filter } = useSelector(getContacts);
+    const { items, filter } = useSelector(getAllContacts);
+    const isLoggedIn = useSelector(isLoggedInGet);
     const contacts = getUserContacts(items, filter);
 
+    useEffect(() => {
+        if (isLoggedIn) dispatch(getContacts());
+    }, [dispatch, isLoggedIn]);
+
     return (
-        <ul className={style.list}>
-            {contacts.map(el => (
-                <ContactItem
-                    key={el.id}
-                    name={el.name}
-                    number={el.number}
-                    id={el.id}
-                />
-            ))}
-        </ul>
+        <>
+            {isLoggedIn && items.length > 0 && (
+                <>
+                    <h2 className={style.heading}>Contacts</h2>
+                    <ul className={style.list}>
+                        {contacts.map(el => (
+                            <ContactItem
+                                key={el.id}
+                                name={el.name}
+                                number={el.number}
+                                id={el.id}
+                            />
+                        ))}
+                    </ul>
+                </>
+            )}
+        </>
     );
 };
 

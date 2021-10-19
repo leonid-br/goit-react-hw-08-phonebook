@@ -1,7 +1,11 @@
 .list {
-    margin-top: 20px;
-
     background-color: lightblue;
     border-radius: 10px;
     padding: 10px;
+}
+
+.heading {
+    color: blue;
+    margin-top: 10px;
+    margin-bottom: 5px;
 }

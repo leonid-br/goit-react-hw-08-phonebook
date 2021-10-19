@@ -3,24 +3,27 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/phonebook-operation';
 import style from './ContactForm.module.css';
 import PropTypes from 'prop-types';
-import shortid from 'shortid';
+// import shortid from 'shortid';
 import { getItems } from 'redux/selectors';
 
 const ContactForm = () => {
-    const [name, setName] = useState('');
-    const [number, setNumber] = useState('');
+    // const [name, setName] = useState('');
+    // const [number, setNumber] = useState('');
+    const [formData, setFormData] = useState({ name: '', number: '' });
     const dispatch = useDispatch();
     const contacts = useSelector(getItems);
 
     const handelChange = e => {
         const { name, value } = e.target;
 
-        if (name === 'name') {
-            setName(value);
-        }
-        if (name === 'number') {
-            setNumber(value);
-        }
+        setFormData(state => ({ ...state, [name]: value }));
+
+        // if (name === 'name') {
+        //     setName(value);
+        // }
+        // if (name === 'number') {
+        //     setNumber(value);
+        // }
     };
 
     const changeEnterName = name => {
@@ -34,18 +37,17 @@ const ContactForm = () => {
     const handelSubmit = e => {
         e.preventDefault();
 
-        if (changeEnterName(name)) {
-            setName('');
-            setNumber('');
+        if (changeEnterName(formData.name)) {
+            // setName('');
+            // setNumber('');
             return alert(
-                `This contact "${name.toUpperCase()}" has already been added to your Phonebook`,
+                `This contact "${formData.name.toUpperCase()}" has already been added to your Phonebook`,
             );
         }
 
-        dispatch(addContact({ name, number, id: shortid.generate() }));
+        dispatch(addContact(formData));
 
-        setName('');
-        setNumber('');
+        setFormData({ name: '', number: '' });
     };
 
     return (
@@ -55,7 +57,7 @@ const ContactForm = () => {
                 <input
                     type="text"
                     name="name"
-                    value={name}
+                    value={formData.name}
                     onChange={handelChange}
                     pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
                     title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
@@ -69,7 +71,7 @@ const ContactForm = () => {
                 <input
                     type="tel"
                     name="number"
-                    value={number}
+                    value={formData.number}
                     onChange={handelChange}
                     pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
                     title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
