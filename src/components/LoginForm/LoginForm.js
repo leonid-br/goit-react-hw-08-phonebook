@@ -27,7 +27,6 @@ const LoginForm = () => {
     };
     return (
         <>
-            {' '}
             <form>
                 <br />
                 <label>

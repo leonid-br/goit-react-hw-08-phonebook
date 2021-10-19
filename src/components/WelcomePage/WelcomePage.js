@@ -9,14 +9,13 @@ const WelcomePage = () => {
             <h2>Преветствие</h2>
             <Link to="/register">Register</Link>
             <Link to="/login">Login</Link>
-            {/* <Switch>
-                <Route path="/register">
-                    <RegisterForm />
-                </Route>
-                <Route path="/login">
-                    <LoginForm />
-                </Route>
-            </Switch> */}
+
+            {/* <Route path="/register">
+                <RegisterForm />
+            </Route>
+            <Route path="/login">
+                <LoginForm />
+            </Route> */}
         </>
     );
 };

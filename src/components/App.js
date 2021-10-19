@@ -8,7 +8,7 @@ import WelcomePage from './WelcomePage';
 import RegisterForm from './RegisterForm';
 import LoginForm from './LoginForm';
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, Suspense } from 'react';
 import { getContacts } from 'redux/phonebook-operation';
 import { getItems, loadingGet, isLoggedInGet, getName } from 'redux/selectors';
 import { fetchCurrentUser } from 'redux/auth-operations';
@@ -30,12 +30,14 @@ const App = () => {
         <Container>
             {!isLoggedIn ? (
                 <>
-                    <Route patch="/">
+                    <Route path="/welcome">
                         <WelcomePage />
                     </Route>
+
                     <Route path="/register">
                         <RegisterForm />
                     </Route>
+
                     <Route path="/login">
                         <LoginForm />
                     </Route>
