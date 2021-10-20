@@ -1,11 +1,13 @@
 .list {
-    background-color: lightblue;
+    background-color: skyblue;
     border-radius: 10px;
     padding: 10px;
+    color: gray;
 }
 
 .heading {
-    color: blue;
+    color: #babecc;
+    text-shadow: 1px 1px 1px #fff;
     margin-top: 10px;
     margin-bottom: 5px;
 }

@@ -7,10 +7,12 @@ import Notification from './Notification';
 import WelcomePage from './WelcomePage';
 import RegisterForm from './RegisterForm';
 import LoginForm from './LoginForm';
+import PrivateRaute from './PrivateRoute/PrivateRoute';
+import PublicRaute from './PublicRoute/PublicRoute';
 import { useSelector, useDispatch } from 'react-redux';
-import { useEffect, Suspense } from 'react';
+import { useEffect } from 'react';
 import { getContacts } from 'redux/phonebook-operation';
-import { getItems, loadingGet, isLoggedInGet, getName } from 'redux/selectors';
+import { getItems, isLoggedInGet, getName } from 'redux/selectors';
 import { fetchCurrentUser } from 'redux/auth-operations';
 import { Route, Switch } from 'react-router';
 
@@ -18,7 +20,6 @@ const App = () => {
     const dispatch = useDispatch();
     const contacts = useSelector(getItems);
     const name = useSelector(getName);
-    const isLoading = useSelector(loadingGet);
     const isLoggedIn = useSelector(isLoggedInGet);
 
     useEffect(() => {
@@ -29,26 +30,34 @@ const App = () => {
     return (
         <Container>
             {!isLoggedIn ? (
-                <>
-                    <Route path="/welcome">
+                <Switch>
+                    <PublicRaute path="/welcome" exact>
                         <WelcomePage />
-                    </Route>
+                    </PublicRaute>
 
-                    <Route path="/register">
+                    <PublicRaute path="/register" restricted>
                         <RegisterForm />
-                    </Route>
+                    </PublicRaute>
 
-                    <Route path="/login">
+                    <PublicRaute path="/login" restricted>
                         <LoginForm />
-                    </Route>
-                </>
+                    </PublicRaute>
+                </Switch>
             ) : (
                 <>
-                    <Heading title={`Your phonebook, ${name.toUpperCase()}`} />
-                    <ContactForm />
+                    <PrivateRaute path="/contacts">
+                        <Heading
+                            title={`Your phonebook, ${name.toUpperCase()}`}
+                        />
+                        <ContactForm />
 
-                    {contacts.length >= 2 && <Filter />}
-                    {contacts.length > 0 ? <ContactList /> : <Notification />}
+                        {contacts.length >= 2 && <Filter />}
+                        {contacts.length > 0 ? (
+                            <ContactList />
+                        ) : (
+                            <Notification />
+                        )}
+                    </PrivateRaute>
                 </>
             )}
         </Container>

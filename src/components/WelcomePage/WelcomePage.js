@@ -1,21 +1,23 @@
-import RegisterForm from 'components/RegisterForm';
-import LoginForm from 'components/LoginForm';
 import { Link } from 'react-router-dom';
-import { Route, Switch, useHistory } from 'react-router';
+import style from './WelcomePage.module.css';
 
 const WelcomePage = () => {
     return (
         <>
-            <h2>Преветствие</h2>
-            <Link to="/register">Register</Link>
-            <Link to="/login">Login</Link>
-
-            {/* <Route path="/register">
-                <RegisterForm />
-            </Route>
-            <Route path="/login">
-                <LoginForm />
-            </Route> */}
+            <h2 className={style.heading}>Contacts App</h2>
+            <p className={style.p}>Hello Friend!</p>
+            <p className={style.p}>
+                If you have an account click here
+                <Link to="/login" className={style.a}>
+                    Login
+                </Link>
+            </p>
+            <p className={style.p}>
+                If you don't have an account click here
+                <Link to="/register" className={style.a}>
+                    Register
+                </Link>
+            </p>
         </>
     );
 };

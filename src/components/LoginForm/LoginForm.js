@@ -1,7 +1,8 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-
+import { Link } from 'react-router-dom';
 import { login } from '../../redux/auth-operations';
+import style from './LoginForm.module.css';
 
 const LoginForm = () => {
     const dispatch = useDispatch();
@@ -21,41 +22,52 @@ const LoginForm = () => {
         try {
             dispatch(login(userData));
             setUserData(initialState);
-            // onClose();
             // history.push('/');
         } catch (error) {}
     };
     return (
         <>
-            <form>
-                <br />
-                <label>
-                    E-mail
+            <form className={style.form}>
+                <div className={style.segment}>
+                    <h2>Sign up</h2>
+                </div>
+                <label className={style.label}>
                     <input
                         type="text"
                         name="email"
                         required
                         onChange={handleChange}
+                        placeholder="Email Address"
                         // value={name}
-                        // onChange={handelChange}
-                        // className={style.input}
+
+                        className={style.input}
                     />
                 </label>
-                <br />
-                <label>
-                    Password
+
+                <label className={style.label}>
                     <input
                         type="text"
                         name="password"
                         required
                         onChange={handleChange}
+                        placeholder="Password"
                         // value={name}
-                        // onChange={handelChange}
-                        // className={style.input}
+
+                        className={style.input}
                     />
                 </label>
-                <button type="submit" onClick={handleSubmit}>
-                    Войти
+                <button
+                    type="submit"
+                    onClick={handleSubmit}
+                    className={style.red}
+                >
+                    <Link
+                        to="/contacts"
+                        className={style.link}
+                        // onClick={handleSubmit}
+                    >
+                        Log in
+                    </Link>
                 </button>
             </form>
         </>

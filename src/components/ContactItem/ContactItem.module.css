@@ -13,11 +13,14 @@
 
     font-size: 12px;
     padding: 0 3px;
-    border-radius: 5px;
+    border-radius: 32px;
+    border-color: #babecc;
+    color: #babecc;
 }
 
 .button:hover {
-    background-color: indianred;
+    box-shadow: -2px -2px 5px #fff, 2px 2px 5px #babecc;
+    color: #61677c;
 }
 
 .number {

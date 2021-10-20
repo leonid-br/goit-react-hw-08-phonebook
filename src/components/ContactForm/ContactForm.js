@@ -3,12 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/phonebook-operation';
 import style from './ContactForm.module.css';
 import PropTypes from 'prop-types';
-// import shortid from 'shortid';
 import { getItems } from 'redux/selectors';
 
 const ContactForm = () => {
-    // const [name, setName] = useState('');
-    // const [number, setNumber] = useState('');
     const [formData, setFormData] = useState({ name: '', number: '' });
     const dispatch = useDispatch();
     const contacts = useSelector(getItems);
@@ -17,13 +14,6 @@ const ContactForm = () => {
         const { name, value } = e.target;
 
         setFormData(state => ({ ...state, [name]: value }));
-
-        // if (name === 'name') {
-        //     setName(value);
-        // }
-        // if (name === 'number') {
-        //     setNumber(value);
-        // }
     };
 
     const changeEnterName = name => {
@@ -38,8 +28,6 @@ const ContactForm = () => {
         e.preventDefault();
 
         if (changeEnterName(formData.name)) {
-            // setName('');
-            // setNumber('');
             return alert(
                 `This contact "${formData.name.toUpperCase()}" has already been added to your Phonebook`,
             );
@@ -63,6 +51,7 @@ const ContactForm = () => {
                     title="Имя может состоять только из букв, апострофа, тире и пробелов. Например Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan и т. п."
                     required
                     className={style.input}
+                    placeholder="Ivan Ivanov"
                 />
             </label>
 
@@ -77,6 +66,7 @@ const ContactForm = () => {
                     title="Номер телефона должен состоять цифр и может содержать пробелы, тире, круглые скобки и может начинаться с +"
                     required
                     className={style.input}
+                    placeholder="+7-999-99-99"
                 />
             </label>
 

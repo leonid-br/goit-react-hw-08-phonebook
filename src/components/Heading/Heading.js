@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 import style from './Heading.module.css';
 import { logout } from 'redux/auth-operations';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const Heading = ({ title }) => {
     const dispatch = useDispatch();
@@ -14,9 +15,11 @@ const Heading = ({ title }) => {
     };
     return (
         <div className={style.heading}>
-            <h2 className={style.title}>{title}</h2>{' '}
+            <h2 className={style.title}>{title}</h2>
             <button type="submit" onClick={handleSubmit} className={style.btn}>
-                Log out
+                <Link to="/welcome" className={style.btn}>
+                    Log out
+                </Link>
             </button>
         </div>
     );
