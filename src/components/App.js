@@ -14,18 +14,23 @@ import { useEffect } from 'react';
 import { getContacts } from 'redux/phonebook-operation';
 import { getItems, isLoggedInGet, getName } from 'redux/selectors';
 import { fetchCurrentUser } from 'redux/auth-operations';
-import { Route, Switch } from 'react-router';
+import { Route, Switch, useHistory } from 'react-router';
 
 const App = () => {
     const dispatch = useDispatch();
     const contacts = useSelector(getItems);
     const name = useSelector(getName);
     const isLoggedIn = useSelector(isLoggedInGet);
+    const history = useHistory();
 
     useEffect(() => {
         dispatch(fetchCurrentUser());
         dispatch(getContacts());
     }, [dispatch, isLoggedIn]);
+
+    // useEffect(() => {
+    //     history.push('/welcome');
+    // }, []);
 
     return (
         <Container>
