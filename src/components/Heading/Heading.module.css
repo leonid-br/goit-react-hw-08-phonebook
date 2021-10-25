@@ -1,5 +1,5 @@
 .title {
-    color: #babecc;
+    color: #ae1100;
     text-shadow: 1px 1px 1px #fff;
 }
 
@@ -29,7 +29,7 @@
 
 .btn:hover {
     box-shadow: -2px -2px 5px #fff, 2px 2px 5px #babecc;
-    color: #61677c;
+    color: #ae1100;
 }
 
 .btn:active {

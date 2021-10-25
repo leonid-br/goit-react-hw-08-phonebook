@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { useHistory } from 'react-router';
 
 axios.defaults.baseURL = 'https://connections-api.herokuapp.com';
-
 const token = {
     set(token) {
         axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -28,9 +28,14 @@ export const register = createAsyncThunk(
 export const login = createAsyncThunk('phonebook/login', async credentials => {
     try {
         const { data } = await axios.post(`/users/login`, credentials);
+
         token.set(data.token);
         return data;
     } catch (error) {
+        const history = useHistory();
+
+        history.push('/');
+
         console.log(error.message);
     }
 });

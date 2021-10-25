@@ -34,7 +34,7 @@
     appearance: none;
 }
 .input:focus {
-    box-shadow: inset 1px 1px 2px #babecc, inset -1px -1px 2px #fff;
+    box-shadow: inset 1px 1px 2px #ae1100, inset -1px -1px 2px #fff;
 }
 
 .button {
@@ -54,5 +54,5 @@
 }
 .button:hover {
     box-shadow: -2px -2px 5px #fff, 2px 2px 5px #babecc;
-    color: #61677c;
+    color: #ae1100;
 }

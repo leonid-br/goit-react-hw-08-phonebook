@@ -28,13 +28,14 @@ const authSlice = createSlice({
             state.token = action.payload.token;
             state.isLoggedIn = true;
         },
-        [login.rejected](state, action) {
+        [login.rejected](state, _) {
             state.user = { user: null, email: null };
             state.token = null;
             state.isLoggedIn = false;
+            alert('Wrong username or password. Please try again');
             console.log('error!');
         },
-        [logout.fulfilled](state, action) {
+        [logout.fulfilled](state, _) {
             state.user = { user: null, email: null };
             state.token = null;
             state.isLoggedIn = false;

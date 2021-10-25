@@ -2,7 +2,7 @@ import { createAction } from '@reduxjs/toolkit';
 
 export const getContactsRequest = createAction('phonebook/getContactsRequest');
 export const getContactsSuccess = createAction('phonebook/getContactsSuccess');
-export const getContactsError = createAction('todos/getContactsError');
+export const getContactsError = createAction('phonebook/getContactsError');
 
 export const addContactRequest = createAction('phonebook/addContactRequest');
 export const addContactSuccess = createAction('phonebook/addContactSuccess');

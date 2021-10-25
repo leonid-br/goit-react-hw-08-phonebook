@@ -7,14 +7,15 @@ import Notification from './Notification';
 import WelcomePage from './WelcomePage';
 import RegisterForm from './RegisterForm';
 import LoginForm from './LoginForm';
-import PrivateRaute from './PrivateRoute/PrivateRoute';
-import PublicRaute from './PublicRoute/PublicRoute';
+import PrivateRoute from './PrivateRoute/PrivateRoute';
+import PublicRoute from './PublicRoute/PublicRoute';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getContacts } from 'redux/phonebook-operation';
-import { getItems, isLoggedInGet, getName } from 'redux/selectors';
+import { getItems, isLoggedInGet, getName, loadingGet } from 'redux/selectors';
 import { fetchCurrentUser } from 'redux/auth-operations';
-import { Route, Switch, useHistory } from 'react-router';
+import { Switch } from 'react-router';
+import { useHistory } from 'react-router';
 
 const App = () => {
     const dispatch = useDispatch();
@@ -22,35 +23,35 @@ const App = () => {
     const name = useSelector(getName);
     const isLoggedIn = useSelector(isLoggedInGet);
     const history = useHistory();
+    // const isLoading = useSelector(loadingGet);
 
+    history.push('/');
     useEffect(() => {
         dispatch(fetchCurrentUser());
         dispatch(getContacts());
     }, [dispatch, isLoggedIn]);
 
-    // useEffect(() => {
-    //     history.push('/welcome');
-    // }, []);
-
     return (
         <Container>
             {!isLoggedIn ? (
                 <Switch>
-                    <PublicRaute path="/welcome" exact>
+                    <PublicRoute path="/" exact>
                         <WelcomePage />
-                    </PublicRaute>
+                    </PublicRoute>
 
-                    <PublicRaute path="/register" restricted>
+                    <PublicRoute path="/register" restricted>
                         <RegisterForm />
-                    </PublicRaute>
+                    </PublicRoute>
 
-                    <PublicRaute path="/login" restricted>
+                    <PublicRoute path="/login" restricted>
                         <LoginForm />
-                    </PublicRaute>
+                    </PublicRoute>
+
+                    <PrivateRoute path="/contacts" />
                 </Switch>
             ) : (
                 <>
-                    <PrivateRaute path="/contacts">
+                    <PrivateRoute path="/contacts">
                         <Heading
                             title={`Your phonebook, ${name.toUpperCase()}`}
                         />
@@ -62,7 +63,7 @@ const App = () => {
                         ) : (
                             <Notification />
                         )}
-                    </PrivateRaute>
+                    </PrivateRoute>
                 </>
             )}
         </Container>

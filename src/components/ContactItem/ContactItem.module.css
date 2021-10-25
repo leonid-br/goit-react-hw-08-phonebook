@@ -19,8 +19,8 @@
 }
 
 .button:hover {
-    box-shadow: -2px -2px 5px #fff, 2px 2px 5px #babecc;
-    color: #61677c;
+    box-shadow: -2px -2px 5px #fff, 2px 2px 5px #ae1100;
+    color: #ae1100;
 }
 
 .number {

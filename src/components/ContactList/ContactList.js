@@ -5,6 +5,7 @@ import ContactItem from 'components/ContactItem/ContactItem';
 import style from './ContactList.module.css';
 import { getAllContacts, isLoggedInGet } from 'redux/selectors';
 import { getContacts } from 'redux/phonebook-operation';
+
 const ContactList = () => {
     const dispatch = useDispatch();
 

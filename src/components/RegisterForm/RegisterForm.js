@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { register } from '../../redux/auth-operations';
 import style from './RegisterForm.module.css';
 
@@ -20,13 +20,12 @@ const RegisterForm = () => {
             dispatch(register(userData));
             console.log(userData);
             setUserData(initialState);
-            // history.push('/');
         } catch (error) {
             console.log(error.message);
         }
     };
     return (
-        <form className={style.form}>
+        <form className={style.form} onSubmit={handleSubmit}>
             <div className={style.segment}>
                 <h2>Registration</h2>
             </div>
@@ -38,8 +37,6 @@ const RegisterForm = () => {
                     required
                     onChange={handleChange}
                     placeholder="Ivanov Ivan"
-                    // value={name}
-
                     className={style.input}
                 />
             </label>
@@ -52,8 +49,6 @@ const RegisterForm = () => {
                     required
                     onChange={handleChange}
                     placeholder="ivanov@me.com"
-                    // value={name}
-
                     className={style.input}
                 />
             </label>
@@ -66,19 +61,11 @@ const RegisterForm = () => {
                     required
                     onChange={handleChange}
                     placeholder="Password"
-                    // value={name}
-
                     className={style.input}
                 />
             </label>
-            <button type="submit" onClick={handleSubmit} className={style.red}>
-                <Link
-                    to="/contacts"
-                    className={style.link}
-                    // onClick={handleSubmit}
-                >
-                    Register
-                </Link>
+            <button type="submit" className={style.red}>
+                Register
             </button>
         </form>
     );

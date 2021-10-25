@@ -17,7 +17,7 @@ const Heading = ({ title }) => {
         <div className={style.heading}>
             <h2 className={style.title}>{title}</h2>
             <button type="submit" onClick={handleSubmit} className={style.btn}>
-                <Link to="/welcome" className={style.btn}>
+                <Link to="/" className={style.btn}>
                     Log out
                 </Link>
             </button>
