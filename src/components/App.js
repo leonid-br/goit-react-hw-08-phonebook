@@ -11,9 +11,9 @@ import PrivateRoute from './PrivateRoute/PrivateRoute';
 import PublicRoute from './PublicRoute/PublicRoute';
 import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { getContacts } from 'redux/phonebook-operation';
-import { getItems, isLoggedInGet, getName, loadingGet } from 'redux/selectors';
-import { fetchCurrentUser } from 'redux/auth-operations';
+import { getContacts } from 'redux/phonebook/phonebook-operation';
+import { getItems, isLoggedInGet, getName } from 'redux/selectors';
+import { fetchCurrentUser } from 'redux/auth/auth-operations';
 import { Switch } from 'react-router';
 import { useHistory } from 'react-router';
 
@@ -23,7 +23,6 @@ const App = () => {
     const name = useSelector(getName);
     const isLoggedIn = useSelector(isLoggedInGet);
     const history = useHistory();
-    // const isLoading = useSelector(loadingGet);
 
     history.push('/');
     useEffect(() => {

@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 import ContactItem from 'components/ContactItem/ContactItem';
 import style from './ContactList.module.css';
 import { getAllContacts, isLoggedInGet } from 'redux/selectors';
-import { getContacts } from 'redux/phonebook-operation';
+import { getContacts } from 'redux/phonebook/phonebook-operation';
 
 const ContactList = () => {
     const dispatch = useDispatch();
@@ -17,7 +17,7 @@ const ContactList = () => {
         );
 
         if (findContacts.length === 0) {
-            alert(`No contact ${normalizedFilter.toUpperCase()}`);
+            // alert(`No contact ${normalizedFilter.toUpperCase()}`);
         }
         return findContacts;
     };

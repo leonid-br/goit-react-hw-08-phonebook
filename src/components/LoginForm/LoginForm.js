@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 // import { Link } from 'react-router-dom';
-import { login } from '../../redux/auth-operations';
+import { login } from '../../redux/auth/auth-operations';
 import style from './LoginForm.module.css';
 import { useHistory } from 'react-router';
 

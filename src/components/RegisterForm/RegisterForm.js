@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 // import { Link } from 'react-router-dom';
-import { register } from '../../redux/auth-operations';
+import { register } from '../../redux/auth/auth-operations';
 import style from './RegisterForm.module.css';
 
 const RegisterForm = () => {
@@ -56,7 +56,7 @@ const RegisterForm = () => {
             <label className={style.label}>
                 Password
                 <input
-                    type="text"
+                    type="password"
                     name="password"
                     required
                     onChange={handleChange}

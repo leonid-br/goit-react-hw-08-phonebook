@@ -9,9 +9,9 @@ import {
     PURGE,
     REGISTER,
 } from 'redux-persist';
-import contactReducer from './phonebook-reducer';
+import contactReducer from './phonebook/phonebook-reducer';
 import storage from 'redux-persist/lib/storage';
-import authReducer from './auth-slice';
+import authReducer from './auth/auth-slice';
 
 const middleware = [
     ...getDefaultMiddleware({
